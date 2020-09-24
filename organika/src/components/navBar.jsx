@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "font-awesome/css/font-awesome.min.css";
 import "../css/navBar.css";
+import { connect } from "react-redux";
 // cc
 class NavBar extends Component {
   state = {};
@@ -53,7 +54,7 @@ class NavBar extends Component {
                 aria-hidden="true"
               ></i>
               View cart
-              <span className="badge badge-primary cart-badge">16</span>
+              <span className="badge badge-primary cart-badge">{this.props.count}</span>
             </Link>
           </div>
         </div>
@@ -61,5 +62,9 @@ class NavBar extends Component {
     );
   }
 }
-
-export default NavBar;
+const mapStateToProps = (state) => {
+  return {
+    count: state.count
+  };
+};
+export default connect(mapStateToProps, null)(NavBar);

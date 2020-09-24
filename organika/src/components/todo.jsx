@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { addTodo } from "../store/actions/index";
 
 class Todo extends Component {
   state = {
@@ -23,7 +25,7 @@ class Todo extends Component {
         <div className="list">
           {this.getTodoCount()}
           <hr></hr>
-          {this.state.todoList.map((t) => (
+          {this.props.todos.map((t) => (
             <div className="item" key={t}>{t}</div>
           ))}
         </div>
@@ -32,7 +34,7 @@ class Todo extends Component {
   }
 
   getTodoCount = () => {
-    let count = this.state.todoList.length;
+    let count = this.props.todos.length;
     var txt = "elements";
     if (count === 1) txt = "element";
     return (
@@ -48,13 +50,20 @@ class Todo extends Component {
   addTodo = () => {
     let inputTxt = this.state.todoText;
     console.log("adding ", inputTxt);
+    
     if (inputTxt.trim().length > 0) {
-      let todoList = [...this.state.todoList, inputTxt];
-      this.setState({ todoList: todoList, todoText: "" });
-    } else { // in case that only spaces were inserted in the input, clean
+        this.props.addTodo(this.state.todoText);
         this.setState({todoText: "" });
     }
+    
   };
 }
 
-export default Todo;
+const mapStateToProps = (state) => {
+  return {
+    todos: state.todos
+  };
+};
+
+//  connect(null,{  }) 1rst param what to change , 2nd 
+export default connect(mapStateToProps,{ addTodo })(Todo);
