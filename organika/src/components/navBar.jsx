@@ -54,7 +54,9 @@ class NavBar extends Component {
                 aria-hidden="true"
               ></i>
               View cart
-              <span className="badge badge-primary cart-badge">{this.props.count}</span>
+              <span className="badge badge-primary cart-badge">
+                {this.props.count}
+              </span>
             </Link>
           </div>
         </div>
@@ -64,7 +66,7 @@ class NavBar extends Component {
 }
 const mapStateToProps = (state) => {
   return {
-    count: state.count
+    count: state.cart.length,
   };
 };
 export default connect(mapStateToProps, null)(NavBar);

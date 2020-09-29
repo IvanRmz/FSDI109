@@ -52,22 +52,22 @@ class QuantityPicker extends Component {
 
     return (
       <div className="picker">
-        <button 
-          onClick={this.increase} 
-          disabled={this.state.quantity === this.props.max}
-          className="btn btn-primary"
-        >
-          +
-        </button>
-        <label className="border border-dark quantity-lbl">
-          {this.state.quantity}
-        </label>
         <button
           onClick={this.decrease}
           disabled={this.state.quantity === this.props.minimum}
           className="btn btn-primary"
         >
           -
+        </button>
+        <label className="border border-dark quantity-lbl">
+          {this.state.quantity}
+        </label>
+        <button 
+          onClick={this.increase} 
+          disabled={this.state.quantity === this.props.max}
+          className="btn btn-primary"
+        >
+          +
         </button>
       </div>
     );
