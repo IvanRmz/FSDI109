@@ -17,3 +17,11 @@ export const addProduct = (product) => {
     payload: product,
   };
 };
+
+
+export const removeProduct = (productId) => {
+  return {
+    type: "REMOVE_PRODUCT",
+    payload: productId,
+  };
+};

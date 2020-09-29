@@ -58,6 +58,7 @@ class Item extends Component {
     this.props.addProduct(addedProduct);
     this.props.incrementCartCounter();
 
+
     /**
      *
      * create the action (similar to addTodo )
@@ -72,5 +73,6 @@ class Item extends Component {
     this.setState({ quantity: qnt });
   };
 }
+
 
 export default connect(null, { incrementCartCounter, addProduct })(Item);

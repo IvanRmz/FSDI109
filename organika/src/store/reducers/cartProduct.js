@@ -1,3 +1,5 @@
+import ItemService from "../../service/itemService";
+
 const cartProductsReducer = (state = [], action) => {
   switch (action.type) {
     case "ADD_PRODUCT":
@@ -15,11 +17,22 @@ const cartProductsReducer = (state = [], action) => {
       if(!found) {
           cart.push(action.payload);
       }
+      // update cart on the server
+
+      let service = new ItemService();
+      service.saveCart("Ivan", cart);
 
       return cart;
+    
+    case "REMOVE_PRODUCT":
+      return [...state].filter(pc => pc.product.id !== action.payload);
+
 
     default:
       return state;
+
+      
+      
   }
 };
 

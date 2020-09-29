@@ -60,9 +60,9 @@ class Catalog extends Component {
     this.setState({ selectedCategory: category });
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     let service = new ItemService();
-    const data = service.getProducts();
+    const data = await service.getProducts();
     this.setState({ items: data });
 
     let categories = [];
